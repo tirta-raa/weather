@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
 class SplashScreenPage extends StatelessWidget {
   const SplashScreenPage({Key? key}) : super(key: key);

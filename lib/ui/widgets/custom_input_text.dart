@@ -40,7 +40,7 @@ class CustomInputText extends StatelessWidget {
               hintText: hintText,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(17),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xffDBD7EC),
                 ),
               ),

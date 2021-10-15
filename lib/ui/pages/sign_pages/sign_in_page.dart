@@ -1,4 +1,4 @@
-part of 'pages.dart';
+part of '../pages.dart';
 
 class SignInPage extends StatelessWidget {
   SignInPage({Key? key}) : super(key: key);
@@ -9,12 +9,26 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget linierColor() {
+      return Container(
+          decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF484B5B),
+            Color(0xFF2C2D35),
+          ],
+        ),
+      ));
+    }
+
     Widget title() {
       return Container(
-        margin: const EdgeInsets.only(top: 20, left: defaultMargin, bottom: 30),
+        margin: EdgeInsets.only(top: 20, left: defaultMargin, bottom: 30),
         child: Text(
           'Sign',
-          style: blackTextStyle.copyWith(fontSize: 24),
+          style: whiteTextStyle2.copyWith(fontSize: 24),
         ),
       );
     }
@@ -39,11 +53,9 @@ class SignInPage extends StatelessWidget {
 
       Widget button() {
         return CustomButton(
-          margin: EdgeInsets.only(top: 20),
+          margin: const EdgeInsets.only(top: 50),
           title: 'Get Started',
-          onPressed: () {
-            Get.to(MainPage());
-          },
+          onPressed: () {},
           width: 255,
         );
       }
@@ -69,15 +81,15 @@ class SignInPage extends StatelessWidget {
     Widget buttonTermsAndCondition() {
       return Center(
         child: Container(
-          margin: EdgeInsets.only(top: 50),
+          margin: const EdgeInsets.only(top: 50),
           child: TextButton(
             onPressed: () {
-              Get.back();
+              Get.to(SignUpPage());
             },
             child: Text(
               'Dont Have Account? sign Up',
-              style:
-                  greyFontStyle.copyWith(decoration: TextDecoration.underline),
+              style: whiteTextStyle3.copyWith(
+                  decoration: TextDecoration.underline),
             ),
           ),
         ),
@@ -85,19 +97,23 @@ class SignInPage extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: bgColor,
-      body: SafeArea(
-        child: ListView(
-          children: [
-            title(),
-            Column(
+      body: Stack(
+        children: [
+          linierColor(),
+          SafeArea(
+            child: ListView(
               children: [
-                inputArea(),
-                buttonTermsAndCondition(),
+                title(),
+                Column(
+                  children: [
+                    inputArea(),
+                    buttonTermsAndCondition(),
+                  ],
+                ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

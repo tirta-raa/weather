@@ -11,7 +11,7 @@ class FourthIntroducePage extends StatelessWidget {
       image: 'assets/suncloud.png',
       percent: 1.00,
       onTap: () {
-        Get.to(const SignInPage());
+        Get.to(SignInPage());
       },
     );
   }
