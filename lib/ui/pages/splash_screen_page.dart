@@ -5,6 +5,9 @@ class SplashScreenPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Timer(const Duration(seconds: 3), () {
+      Get.offAll(const FirstIntroPage());
+    });
     linierColor() {
       return Container(
           decoration: const BoxDecoration(
