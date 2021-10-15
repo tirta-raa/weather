@@ -38,7 +38,7 @@ class IlustrationPage extends StatelessWidget {
         alignment: Alignment.topRight,
         child: TextButton(
           onPressed: () {
-            Get.to(const SignInPage());
+            Get.to(SignInPage());
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 43, right: 30),
