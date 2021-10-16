@@ -9,20 +9,7 @@ class SignInPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget linierColor() {
-      return Container(
-          decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF484B5B),
-            Color(0xFF2C2D35),
-          ],
-        ),
-      ));
-    }
-
+    //
     Widget title() {
       return Container(
         margin: EdgeInsets.only(top: 20, left: defaultMargin, bottom: 30),
@@ -55,7 +42,9 @@ class SignInPage extends StatelessWidget {
         return CustomButton(
           margin: const EdgeInsets.only(top: 50),
           title: 'Get Started',
-          onPressed: () {},
+          onPressed: () {
+            Get.to(HomePage());
+          },
           width: 255,
         );
       }

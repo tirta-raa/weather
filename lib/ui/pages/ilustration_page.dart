@@ -19,20 +19,6 @@ class IlustrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //
-    Widget linierColor() {
-      return Container(
-          decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFF484B5B),
-            Color(0xFF2C2D35),
-          ],
-        ),
-      ));
-    }
-
     Widget skipButton() {
       return Align(
         alignment: Alignment.topRight,

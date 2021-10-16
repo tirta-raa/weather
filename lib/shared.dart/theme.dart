@@ -18,3 +18,17 @@ TextStyle blackTextStyle = GoogleFonts.poppins(
     color: const Color(0xff0A0A22), fontWeight: FontWeight.w600);
 
 double defaultMargin = 24;
+
+Widget linierColor() {
+  return Container(
+      decoration: const BoxDecoration(
+    gradient: LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xFF484B5B),
+        Color(0xFF2C2D35),
+      ],
+    ),
+  ));
+}
