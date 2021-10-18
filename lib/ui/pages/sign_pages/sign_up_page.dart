@@ -7,8 +7,6 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController(text: '');
   final TextEditingController passwordController =
       TextEditingController(text: '');
-  final TextEditingController locationController =
-      TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +47,6 @@ class SignUpPage extends StatelessWidget {
         );
       }
 
-      Widget hobby() {
-        return CustomInputText(
-          title: 'Location',
-          hintText: 'Input your location',
-          controller: locationController,
-        );
-      }
-
       Widget button() {
         return CustomButton(
           margin: const EdgeInsets.only(top: 20, bottom: 20),
@@ -80,7 +70,6 @@ class SignUpPage extends StatelessWidget {
             fullName(),
             emailAdress(),
             password(),
-            hobby(),
             button(),
           ],
         ),
