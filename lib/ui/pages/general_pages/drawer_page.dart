@@ -14,19 +14,19 @@ class _DrawerPageState extends State<DrawerPage> {
     profile() {
       return Container(
         margin: EdgeInsets.only(top: 22, left: defaultMargin),
-        child: Row(
+        child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(right: defaultMargin),
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: AssetImage('assets/sun.png'),
-                radius: 30,
-              ),
+            Text(
+              'Have a good day',
+              style: whiteTextStyle2.copyWith(fontSize: 18),
+            ),
+            const SizedBox(
+              height: 4,
             ),
             Text(
               'Nama',
               style: whiteTextStyle2.copyWith(fontSize: 18),
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),

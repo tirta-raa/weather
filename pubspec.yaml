@@ -27,7 +27,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  bloc: ^7.2.1
+  cloud_firestore: ^2.5.3
   cupertino_icons: ^1.0.2
+  equatable: ^2.0.3
+  firebase_auth: ^3.1.1
+  firebase_core: ^1.6.0
   flutter:
     sdk: flutter
   flutter_slider_drawer: ^2.0.0
@@ -35,11 +40,6 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.4
   percent_indicator: ^3.4.0
-  firebase_auth: ^3.1.1
-  firebase_core: ^1.6.0
-  cloud_firestore: ^2.5.3
-  equatable: ^2.0.3
-  equatable: ^2.0.3
 
 dev_dependencies:
   flutter_lints: ^1.0.0
