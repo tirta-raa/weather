@@ -1,13 +1,13 @@
 part of '../pages.dart';
 
-class DrawerScreen extends StatefulWidget {
-  const DrawerScreen({Key? key}) : super(key: key);
+class DrawerPage extends StatefulWidget {
+  const DrawerPage({Key? key}) : super(key: key);
 
   @override
-  _DrawerScreenState createState() => _DrawerScreenState();
+  _DrawerPageState createState() => _DrawerPageState();
 }
 
-class _DrawerScreenState extends State<DrawerScreen> {
+class _DrawerPageState extends State<DrawerPage> {
   @override
   Widget build(BuildContext context) {
     //
