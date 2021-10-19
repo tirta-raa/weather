@@ -6,7 +6,16 @@ class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 3), () {
-      Get.offAll(const FirstIntroPage());
+      User? user = FirebaseAuth.instance.currentUser;
+      if (user == null) {
+        Get.offAll(const FirstIntroPage());
+      } else {
+        // print(user.email);
+
+        context.read<AuthCubit>().getCurrenUser(user.uid);
+
+        Get.offAll(const HomePage());
+      }
     });
     linierColor() {
       return Container(

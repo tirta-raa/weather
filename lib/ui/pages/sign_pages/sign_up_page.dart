@@ -48,13 +48,39 @@ class SignUpPage extends StatelessWidget {
       }
 
       Widget button() {
-        return CustomButton(
-          margin: const EdgeInsets.only(top: 20, bottom: 20),
-          title: 'Get Started',
-          onPressed: () {
-            Get.to(HomePage());
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthSuccess) {
+              Get.offAll(const HomePage());
+            } else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: redColor,
+                  content: Text(state.error),
+                ),
+              );
+            }
           },
-          width: 255,
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            return CustomButton(
+              margin: EdgeInsets.only(top: 20),
+              title: 'Get Started',
+              onPressed: () {
+                context.read<AuthCubit>().signUp(
+                      email: emailController.text,
+                      password: passwordController.text,
+                      name: nameController.text,
+                    );
+              },
+              width: 255,
+            );
+          },
         );
       }
 

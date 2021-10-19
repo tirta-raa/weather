@@ -11,25 +11,33 @@ class _DrawerPageState extends State<DrawerPage> {
   @override
   Widget build(BuildContext context) {
     //
-    profile() {
-      return Container(
-        margin: EdgeInsets.only(top: 22, left: defaultMargin),
-        child: Column(
-          children: [
-            Text(
-              'Have a good day',
-              style: whiteTextStyle2.copyWith(fontSize: 18),
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            Text(
-              'Nama',
-              style: whiteTextStyle2.copyWith(fontSize: 18),
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
-        ),
+    name() {
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Container(
+              margin: EdgeInsets.only(top: 22, left: defaultMargin),
+              child: Column(
+                children: [
+                  Text(
+                    'Have a good day',
+                    style: whiteTextStyle2.copyWith(fontSize: 18),
+                  ),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    state.user.name,
+                    style: whiteTextStyle2.copyWith(fontSize: 18),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       );
     }
 
@@ -158,21 +166,42 @@ class _DrawerPageState extends State<DrawerPage> {
     }
 
     logoutButton() {
-      return Align(
-        alignment: Alignment.bottomCenter,
-        child: ListTile(
-          leading: Icon(
-            Icons.logout,
-            color: Colors.white,
-          ),
-          onTap: () {
-            Get.offAll(SignInPage());
-          },
-          title: Text(
-            'Logout',
-            style: whiteTextStyle2,
-          ),
-        ),
+      return BlocConsumer<AuthCubit, AuthState>(
+        listener: (context, state) {
+          if (state is AuthFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                backgroundColor: redColor,
+                content: Text(state.error),
+              ),
+            );
+          } else if (state is AuthInitial) {
+            Get.offAll(SignUpPage());
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Align(
+            alignment: Alignment.bottomCenter,
+            child: ListTile(
+              leading: Icon(
+                Icons.logout,
+                color: Colors.white,
+              ),
+              onTap: () {
+                context.read<AuthCubit>().signOut();
+              },
+              title: Text(
+                'Logout',
+                style: whiteTextStyle2,
+              ),
+            ),
+          );
+        },
       );
     }
 
@@ -183,7 +212,7 @@ class _DrawerPageState extends State<DrawerPage> {
           Expanded(
             child: ListView(
               children: [
-                profile(),
+                name(),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   child: Divider(

@@ -1,13 +1,33 @@
 part of 'pages.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final WeatherData? weatherData;
+
+  const HomePage({Key? key, this.weatherData}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  late int temperature;
+  late AssetImage iconImage;
+
+  void updateDisplayInfo(WeatherData weatherData) {
+    setState(() {
+      temperature = weatherData.currentTemperature.round();
+      WeatherDisplayData weatherDisplayData =
+          weatherData.getWeatherDisplayData();
+      iconImage = weatherDisplayData.weatherImage;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    updateDisplayInfo(widget.weatherData!);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +71,14 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    Image.asset(
-                      'assets/suncloud2d.png',
+                    Container(
                       width: double.infinity,
-                      fit: BoxFit.cover,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: iconImage,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -64,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            '23°',
+                            '$temperature°',
                             style: GoogleFonts.overpass().copyWith(
                               fontSize: 80,
                               color: Colors.white,
